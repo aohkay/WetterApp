@@ -1,0 +1,9 @@
+3. Fügen Sie Ihren OpenWeatherMap API-Schlüssel in das Skript ein.
+
+## Benutzung
+
+Führen Sie das Skript aus und geben Sie den Namen einer Stadt ein, um das aktuelle Wetter für diese Stadt anzuzeigen.
+
+## Lizenz
+
+Dieses Projekt steht unter der MIT-Lizenz.
