@@ -11,18 +11,21 @@ def haupt():
     stadt = input("Bitte geben Sie den Namen einer Stadt ein: ")
     wetter = wetter_abrufen(stadt)
 
-    if wetter["cod"] != "404":
-        hauptteil = wetter["main"]
-        aktuelle_temperatur = hauptteil["temp"]
-        aktueller_druck = hauptteil["pressure"]
-        aktuelle_feuchtigkeit = hauptteil["humidity"]
-        wetterzustand = wetter["weather"]
-        wetterbeschreibung = wetterzustand[0]["description"]
+    if wetter.get("cod") != "404":
+        hauptteil = wetter.get("main", {})
+        aktuelle_temperatur = hauptteil.get("temp")
+        aktueller_druck = hauptteil.get("pressure")
+        aktuelle_feuchtigkeit = hauptteil.get("humidity")
+        wetterzustand = wetter.get("weather", [{}])[0]
+        wetterbeschreibung = wetterzustand.get("description")
 
-        print(f"Temperatur (in Celsius): {aktuelle_temperatur}\n"
-              f"Luftdruck (in hPa): {aktueller_druck}\n"
-              f"Feuchtigkeit (in Prozent): {aktuelle_feuchtigkeit}\n"
-              f"Beschreibung: {wetterbeschreibung}")
+        if aktuelle_temperatur and aktueller_druck and aktuelle_feuchtigkeit:
+            print(f"Temperatur (in Celsius): {aktuelle_temperatur}\n"
+                  f"Luftdruck (in hPa): {aktueller_druck}\n"
+                  f"Feuchtigkeit (in Prozent): {aktuelle_feuchtigkeit}\n"
+                  f"Beschreibung: {wetterbeschreibung}")
+        else:
+            print("Wetterdaten nicht verfügbar.")
     else:
         print("Stadt nicht gefunden.")
 
